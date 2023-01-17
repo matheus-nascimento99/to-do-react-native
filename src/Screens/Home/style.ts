@@ -13,7 +13,6 @@ export const styles = StyleSheet.create({
     secondSubContainer: {
         flex: 1,
         backgroundColor: '#191919',
-        alignItems: 'center',
         padding: 20
     },
 });

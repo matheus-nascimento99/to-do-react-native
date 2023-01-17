@@ -19,6 +19,6 @@ export const styles = StyleSheet.create({
     logo: {
         resizeMode:"cover", 
         width:40, 
-        height:30
+        height:30,
     }
 })

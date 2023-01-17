@@ -11,7 +11,7 @@ import { Task } from "../../types/Task";
 
 const Home = () => {
 
-    const [tasks, setTask] = useState<Task[]>([{id: uuid(), task: 'Acampar'}, {id: uuid(), task: 'Viajar'}, {id: uuid(), task: 'Estudar'}]);
+    const [tasks, setTask] = useState<Task[]>([{id: uuid(), task: 'Acampar', status: 1}, {id: uuid(), task: 'Viajar', status: 1}, {id: uuid(), task: 'Estudar', status: 2}]);
 
     return (
         <SafeAreaView style={styles.container}>
@@ -19,10 +19,10 @@ const Home = () => {
                 <Logo />
             </View>
             <View style={styles.secondSubContainer}>
-                <StatusArea />
+                <StatusArea createdies={tasks.length} finishedies={tasks.filter((item)=>item.status===2).length}/>
+                <TaskList tasks={tasks} />
             </View>
             <Input />
-            <TaskList tasks={tasks} />
         </SafeAreaView>
     );
 }

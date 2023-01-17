@@ -1,7 +1,12 @@
 import { View, Text } from "react-native";
 import { styles } from "./style";
 
-export const StatusArea = () => {
+interface StatusAreaType {
+    createdies: number,
+    finishedies: number
+}
+
+export const StatusArea = ({createdies, finishedies}: StatusAreaType) => {
     return (
         <View style={styles.container}>
 
@@ -12,7 +17,7 @@ export const StatusArea = () => {
                 </Text>
 
                 <Text style={styles.statusQtd}>
-                    5
+                    {createdies}
                 </Text>
 
             </View>
@@ -24,7 +29,7 @@ export const StatusArea = () => {
                 </Text>
 
                 <Text style={styles.statusQtd}>
-                    2
+                    {finishedies}
                 </Text>
 
             </View>
