@@ -11,7 +11,27 @@ import { Task } from "../../types/Task";
 
 const Home = () => {
 
-    const [tasks, setTask] = useState<Task[]>([{id: uuid(), task: 'Acampar', status: 1}, {id: uuid(), task: 'Viajar', status: 1}, {id: uuid(), task: 'Estudar', status: 2}]);
+    const [tasks, setTask] = useState<Task[]>([]);
+
+    const handleAdd = (item:string) => {
+        setTask(prevState => [...prevState, {
+            id: uuid(),
+            task: item,
+            status: false
+        }]);
+    }
+
+    const handleChangeStatus = (index:number) => {
+        setTask((prevState) => {
+            let newItems = [...prevState];
+            newItems[index].status = !newItems[index].status;
+            return newItems;
+        })
+    }
+
+    const handleRemove = (id:string) => {
+        setTask(prevState => prevState.filter(item => item.id != id))
+    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -19,10 +39,10 @@ const Home = () => {
                 <Logo />
             </View>
             <View style={styles.secondSubContainer}>
-                <StatusArea createdies={tasks.length} finishedies={tasks.filter((item)=>item.status===2).length}/>
-                <TaskList tasks={tasks} />
+                <StatusArea createdies={tasks.length} finishedies={tasks.filter((item)=>item.status === true).length}/>
+                <TaskList onChangeStatus={handleChangeStatus} onRemove={handleRemove} tasks={tasks} />
             </View>
-            <Input />
+            <Input onAdd={handleAdd} />
         </SafeAreaView>
     );
 }

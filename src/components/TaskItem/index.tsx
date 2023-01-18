@@ -1,32 +1,41 @@
-import { Text, View, Image } from "react-native";
+import { Text, View, Image, TouchableOpacity } from "react-native";
 import TaskItemStyle from "./style";
 
 interface TaskItem {
     item: {
         id: string,
         task: string,
-        status: number
+        status: boolean
     },
     onChangeTaskStatus: () => void,
     onDeleteTask: () => void
 }
 
 export const TaskItem = ({item, onChangeTaskStatus, onDeleteTask}:TaskItem) => {
+
+    const handleChangeStatus = () => {
+        onChangeTaskStatus();
+    }
+
+    const handleRemove = () => {
+        onDeleteTask();
+    }
+
     return (
         <View style={TaskItemStyle.getSheet().container} >
-            <View style={TaskItemStyle.getSheet().itemAreaIcon} >
+            <TouchableOpacity style={TaskItemStyle.getSheet().itemAreaIcon} onPress={handleChangeStatus} >
                 <View style={TaskItemStyle.getSheet(item.status).taskStatusCheckArea}>
-                    {item.status === 2 && 
+                    {item.status === true && 
                         <Image source={require('./assets/images/check.png')} style={TaskItemStyle.getSheet().taskStatusCheck} />
                     }
                 </View>
-            </View>
+            </TouchableOpacity>
             <View style={TaskItemStyle.getSheet().itemArea}>
                 <Text style={TaskItemStyle.getSheet().taskText}>{item.task}</Text>
             </View>
-            <View style={TaskItemStyle.getSheet().itemAreaIcon}>
+            <TouchableOpacity style={TaskItemStyle.getSheet().itemAreaIcon} onPress={handleRemove}>
                 <Image source={require('./assets/images/trash.png')} style={TaskItemStyle.getSheet().taskTrash} />
-            </View>
+            </TouchableOpacity>
         </View>
     );
 }

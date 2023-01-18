@@ -1,5 +1,5 @@
 export interface Task {
     id: string,
     task: string,
-    status: number
+    status: boolean
 }

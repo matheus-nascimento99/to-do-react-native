@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 
 export default class TaskItemStyle{
-    static getSheet(status?:number){
+    static getSheet(status?:boolean){
 
         return StyleSheet.create({
                 container: {
@@ -27,10 +27,10 @@ export default class TaskItemStyle{
                     width:20,
                     height:20,
                     borderWidth: 1,
-                    borderColor: '#4EA8DE',
+                    borderColor: status === true ? '#585ABD' : '#4EA8DE',
                     padding:5,
                     borderRadius: 10,
-                    backgroundColor: status == 2 ? '#585ABD': 'transparent',
+                    backgroundColor: status === true ? '#585ABD': 'transparent',
                     justifyContent:"center",
                     alignItems: "center"
                 },
