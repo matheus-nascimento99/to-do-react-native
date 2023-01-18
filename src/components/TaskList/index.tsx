@@ -1,5 +1,6 @@
 import { Alert, FlatList, Text, TouchableHighlight, View } from "react-native";
 import { TaskItem } from "../TaskItem";
+import { EmptyListInfo } from "../EmptyListInfo";
 
 type Tasks = {
     tasks: {
@@ -35,6 +36,7 @@ export const TaskList = ({tasks, onChangeStatus, onRemove}:Tasks) => {
             data={tasks}
             renderItem={({item, index})=> <TaskItem item={item} onChangeTaskStatus={()=> handleChangeTaskStatus(index)} onDeleteTask={()=>handleDeleteTask(index, item.id)} />}
             keyExtractor={(item)=>item.id}
+            ListEmptyComponent={()=><EmptyListInfo />}
         />
     );
 }
